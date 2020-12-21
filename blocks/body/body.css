@@ -1,0 +1,7 @@
+.body {
+  background-color: #000000;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  min-width: 320px;
+}

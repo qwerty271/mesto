@@ -1,0 +1,30 @@
+.overlay__button {
+  background-image: url(../../../images/Close_button.svg);
+  background-color: transparent;
+  background-position: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  position: relative;
+  bottom: 185px;
+  left: 235px;
+  padding: 0;
+}
+
+.overlay__button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.overlay__button:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 768px) and (min-width: 320px) {
+  .overlay__button {
+    width: 26px;
+    height: 26px;
+    bottom: 205px;
+    left: 115px;
+  }
+}
