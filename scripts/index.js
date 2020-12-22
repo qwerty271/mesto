@@ -1,4 +1,4 @@
-let openButton = document.querySelector(".profile__edit-button");
+let openButton = document.querySelector(".profile__edit");
 let overlay = document.querySelector(".overlay");
 let closeButton = overlay.querySelector(".overlay__button");
 function toggleForm() {
@@ -12,8 +12,6 @@ overlay.addEventListener("click", (event) => {
   }
 });
 
-let form = overlay.querySelector(".form");
-
 function handleFormSubmit(evt) {
   evt.preventDefault();
   let nameInput = overlay.querySelector(".form__item_name");
@@ -23,6 +21,7 @@ function handleFormSubmit(evt) {
   nameValue.textContent = nameInput.value;
   jobValue.textContent = jobInput.value;
 }
+let form = overlay.querySelector(".form");
 form.addEventListener("submit", handleFormSubmit);
 let submitButton = overlay.querySelector(".form__button");
 submitButton.addEventListener("click", () => {
