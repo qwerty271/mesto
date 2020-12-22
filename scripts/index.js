@@ -16,8 +16,8 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   let nameInput = overlay.querySelector(".form__item_name");
   let jobInput = overlay.querySelector(".form__item_job");
-  let nameValue = document.querySelector(".profile__info_name");
-  let jobValue = document.querySelector(".profile__info_about");
+  let nameValue = document.querySelector(".profile__name");
+  let jobValue = document.querySelector(".profile__about");
   nameValue.textContent = nameInput.value;
   jobValue.textContent = jobInput.value;
 }
