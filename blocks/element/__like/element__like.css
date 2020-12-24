@@ -20,5 +20,4 @@
 
 .element__like:focus {
   outline: none;
-  background-image: url(../../../images/like_active.svg);
 }

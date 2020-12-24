@@ -22,22 +22,29 @@
         alt="логотип"
         class="header__logo"
       >
-      <hr class="line">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img
-          src="images/avatar.jpg"
-          alt="аватар"
-          class="profile__avatar"
-        >
-        <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit"></button>
-          <p class="profile__about">Исследователь океана</p>
+        <div class="profile__content">
+          <img
+            src="images/avatar.jpg"
+            alt="аватар"
+            class="profile__avatar"
+          >
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button
+              class="profile__edit"
+              type="button"
+            ></button>
+            <p class="profile__about">Исследователь океана</p>
+          </div>
         </div>
-        <button class="profile__add"></button>
+        <button
+          class="profile__add"
+          type="button"
+        ></button>
       </section>
       <section class="elements">
         <div class="element">
@@ -47,8 +54,11 @@
             class="element__image"
           >
           <div class="element__heading">
-            <p class="element__place">Карачаевск</p>
-            <button class="element__like"></button>
+            <h2 class="element__place">Карачаевск</h2>
+            <button
+              class="element__like"
+              type="button"
+            ></button>
           </div>
         </div>
         <!--/element-->
@@ -59,8 +69,11 @@
             class="element__image"
           >
           <div class="element__heading">
-            <p class="element__place">Гора Эльбрус</p>
-            <button class="element__like"></button>
+            <h2 class="element__place">Гора Эльбрус</h2>
+            <button
+              class="element__like"
+              type="button"
+            ></button>
           </div>
         </div>
         <!--/element-->
@@ -71,8 +84,11 @@
             class="element__image"
           >
           <div class="element__heading">
-            <p class="element__place">Домбай</p>
-            <button class="element__like"></button>
+            <h2 class="element__place">Домбай</h2>
+            <button
+              class="element__like"
+              type="button"
+            ></button>
           </div>
         </div>
         <!--/element-->
@@ -83,8 +99,11 @@
             class="element__image"
           >
           <div class="element__heading">
-            <p class="element__place">Гора Эльбрус</p>
-            <button class="element__like"></button>
+            <h2 class="element__place">Гора Эльбрус</h2>
+            <button
+              class="element__like"
+              type="button"
+            ></button>
           </div>
         </div>
         <!--/element-->
@@ -95,8 +114,11 @@
             class="element__image"
           >
           <div class="element__heading">
-            <p class="element__place">Домбай</p>
-            <button class="element__like"></button>
+            <h2 class="element__place">Домбай</h2>
+            <button
+              class="element__like"
+              type="button"
+            ></button>
           </div>
         </div>
         <!--/element-->
@@ -107,8 +129,11 @@
             class="element__image"
           >
           <div class="element__heading">
-            <p class="element__place">Карачаевск</p>
-            <button class="element__like"></button>
+            <h2 class="element__place">Карачаевск</h2>
+            <button
+              class="element__like"
+              type="button"
+            ></button>
           </div>
         </div>
         <!--/element-->
@@ -120,25 +145,35 @@
     </footer>
 
     <section class="overlay">
-      <form class="form">
+      <div class="popup">
         <h2 class="form__heading">Редактировать профиль</h2>
-        <input
-          class="form__item form__item_name"
-          type="text"
-          value="Жак-Ив Кусто"
+        <form
+          class="form"
+          name="form"
         >
-        <input
-          class="form__item form__item_job"
-          type="text"
-          value="Исследователь океана"
-        >
-        <input
-          class="form__button"
-          type="submit"
-          value="Сохранить"
-        >
-      </form>
-      <button class="overlay__button"></button>
+          <input
+            class="form__item form__name"
+            type="text"
+            value="Жак-Ив Кусто"
+            name="form__item"
+          >
+          <input
+            class="form__item form__job"
+            type="text"
+            value="Исследователь океана"
+            name="form__item"
+          >
+          <button
+            class="form__button"
+            type="submit"
+          >Сохранить</button>
+        </form>
+        <button
+          class="overlay__button"
+          type="button"
+        ></button>
+      </div>
+
     </section>
   </div>
   <!--/page-->

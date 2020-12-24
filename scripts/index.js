@@ -1,29 +1,28 @@
 let openButton = document.querySelector(".profile__edit");
 let overlay = document.querySelector(".overlay");
 let closeButton = overlay.querySelector(".overlay__button");
-function toggleForm() {
-  overlay.classList.toggle("overlay_active");
-}
-openButton.addEventListener("click", toggleForm);
-closeButton.addEventListener("click", toggleForm);
+let nameInput = overlay.querySelector(".form__name");
+let jobInput = overlay.querySelector(".form__job");
+let nameValue = document.querySelector(".profile__name");
+let jobValue = document.querySelector(".profile__about");
+
+openButton.addEventListener("click", () => {
+  overlay.classList.add("overlay_active");
+});
+closeButton.addEventListener("click", () => {
+  overlay.classList.remove("overlay_active");
+});
 overlay.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
-    toggleForm();
+    overlay.classList.remove("overlay_active");
   }
 });
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
-  let nameInput = overlay.querySelector(".form__item_name");
-  let jobInput = overlay.querySelector(".form__item_job");
-  let nameValue = document.querySelector(".profile__name");
-  let jobValue = document.querySelector(".profile__about");
   nameValue.textContent = nameInput.value;
   jobValue.textContent = jobInput.value;
+  overlay.classList.remove("overlay_active");
 }
 let form = overlay.querySelector(".form");
 form.addEventListener("submit", handleFormSubmit);
-let submitButton = overlay.querySelector(".form__button");
-submitButton.addEventListener("click", () => {
-  overlay.classList.remove("overlay_active");
-});
