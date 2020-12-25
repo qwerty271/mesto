@@ -9,8 +9,8 @@ let form = overlay.querySelector(".form");
 
 function overlayAdd() {
   overlay.classList.add("overlay_active");
-  nameInput.textContent = nameValue.value;
-  jobInput.textContent = jobInput.value;
+  nameInput.value = nameValue.textContent;
+  jobInput.value = jobValue.textContent;
 }
 function overlayRemove() {
   overlay.classList.remove("overlay_active");
