@@ -19,6 +19,8 @@
 @import url(../blocks/element/__place/element__place.css);
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__delete/element__delete.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/overlay/overlay.css);
@@ -26,6 +28,15 @@
 @import url(../blocks/overlay/__button/overlay__button.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
+@import url(../blocks/popup/__increase/popup__increase.css);
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__item/form__item.css);
 @import url(../blocks/form/__button/form__button.css);
+@import url(../blocks/blackout/blackout.css);
+@import url(../blocks/blackout/__button/blackout__button.css);
+@import url(../blocks/blackout/_active/blackout_active.css);
+@import url(../blocks/increase/increase.css);
+@import url(../blocks/increase/_active/increase_active.css);
+@import url(../blocks/increase/__button/increase__button.css);
+@import url(../blocks/increase/__image/increase__image.css);
+@import url(../blocks/increase/__title/increase__title.css);
