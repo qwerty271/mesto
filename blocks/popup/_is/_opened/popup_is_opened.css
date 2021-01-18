@@ -1,4 +1,4 @@
-.blackout_active {
+.popup_is_opened {
   display: flex;
   visibility: visible;
   opacity: 1;

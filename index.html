@@ -55,8 +55,8 @@
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
-    <section class="overlay">
-      <div class="popup">
+    <section class="popup popup_type_edit">
+      <div class="popup__content">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <form
           class="form"
@@ -65,14 +65,16 @@
           <input
             class="form__item form__item_type_name"
             type="text"
-            value="Жак-Ив Кусто"
             name="form__item"
+            placeholder="Имя"
+            required
           >
           <input
             class="form__item form__item_type_job"
             type="text"
-            value="Исследователь океана"
             name="form__item"
+            placeholder="О себе"
+            required
           >
           <button
             class="form__button"
@@ -80,14 +82,14 @@
           >Сохранить</button>
         </form>
         <button
-          class="overlay__button"
+          class="popup__button"
           type="button"
         ></button>
       </div>
     </section>
 
-    <section class="blackout">
-      <div class="popup">
+    <section class="popup popup_type_card">
+      <div class="popup__content">
         <h2 class="popup__heading">Новое место</h2>
         <form
           class="form"
@@ -98,12 +100,14 @@
             type="text"
             placeholder="Название"
             name="form__item"
+            required
           >
           <input
             class="form__item form__item_type_link"
             type="text"
             placeholder="Ссылка на картинку"
             name="form__item"
+            required
           >
           <button
             class="form__button"
@@ -111,22 +115,22 @@
           >Создать</button>
         </form>
         <button
-          class="blackout__button"
+          class="popup__button"
           type="button"
         ></button>
       </div>
     </section>
 
-    <section class="increase">
-      <div class="popup popup_increase">
+    <section class="popup popup_type_image">
+      <div class="popup__content popup__content_content_image">
         <img
-          class="increase__image"
+          class="popup__image"
           src=" "
           alt=" "
         >
-        <p class="increase__title"></p>
+        <p class="popup__title"></p>
         <button
-          class="increase__button"
+          class="popup__button"
           type="button"
         ></button>
       </div>
