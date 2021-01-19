@@ -57,50 +57,24 @@ const initialCards = [
 ];
 
 function openPopup(target) {
-  if (target === popupEdit) {
-    popupEdit.classList.add("popup_is_opened");
-  }
-
-  if (target === popupCard) {
-    popupCard.classList.add("popup_is_opened");
-  }
-
-  if (target === popupImage) {
-    popupImage.classList.add("popup_is_opened");
-  }
+  target.classList.add("popup_is_opened");
 }
 
 function closePopup(target) {
-  if (target === popupEdit) {
-    popupEdit.classList.remove("popup_is_opened");
-  }
-
-  if (target === popupCard) {
-    popupCard.classList.remove("popup_is_opened");
-  }
-
-  if (target === popupImage) {
-    popupImage.classList.remove("popup_is_opened");
-  }
+  target.classList.remove("popup_is_opened");
 }
 
 popupEdit.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
-    popupEdit.classList.remove("popup_is_opened");
+    closePopup(popupEdit);
   }
 });
 
 popupCard.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
-    popupCard.classList.remove("popup_is_opened");
+    closePopup(popupCard);
   }
 });
-
-// popupImage.addEventListener("click", (event) => {
-//   if (event.target === event.currentTarget) {
-//     popupImage.classList.remove("popup_is_opened");
-//   }
-// });
 
 openEdit.addEventListener("click", () => {
   openPopup(popupEdit);
@@ -181,7 +155,7 @@ elements.addEventListener("click", (event) => {
 
 closeImage.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
-    popupImage.classList.remove("popup_is_opened");
+    closePopup(popupImage);
   }
 });
 
