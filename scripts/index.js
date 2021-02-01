@@ -58,6 +58,7 @@ const initialCards = [
 
 function openPopup(target) {
   target.classList.add("popup_is_opened");
+  resetError(target, configValidation);
 }
 
 function closePopup(target) {
@@ -72,7 +73,14 @@ popupEdit.addEventListener("click", (event) => {
 
 popupCard.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
+    formCard.reset(); //??????????????????????????
     closePopup(popupCard);
+  }
+});
+
+popupImage.addEventListener("click", (event) => {
+  if (event.target === event.currentTarget) {
+    closePopup(popupImage);
   }
 });
 
@@ -91,6 +99,7 @@ closeEdit.addEventListener("click", () => {
 });
 
 closeCard.addEventListener("click", () => {
+  formCard.reset(); //???????????????????????
   closePopup(popupCard);
 });
 
@@ -160,3 +169,16 @@ closeImage.addEventListener("click", (event) => {
 });
 
 render();
+
+function closePopupEscape() {
+  const popupList = Array.from(document.querySelectorAll(".popup"));
+  popupList.forEach((popupElement) => {
+    document.addEventListener("keydown", function (evt) {
+      if (evt.key === "Escape") {
+        closePopup(popupElement);
+      }
+    });
+  });
+}
+
+closePopupEscape();

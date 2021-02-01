@@ -61,6 +61,7 @@
         <form
           class="form"
           name="form"
+          novalidate
         >
           <input
             class="form__item form__item_type_name"
@@ -68,18 +69,27 @@
             name="form__item"
             placeholder="Имя"
             required
+            minlength="2"
+            maxlength="40"
+            id="edit-input"
           >
+          <span class="form__item-error edit-input-error"></span>
           <input
             class="form__item form__item_type_job"
             type="text"
             name="form__item"
             placeholder="О себе"
             required
+            minlength="2"
+            maxlength="200"
+            id="job-input"
           >
+          <span class="form__item-error job-input-error"></span>
           <button
             class="form__button"
             type="submit"
           >Сохранить</button>
+
         </form>
         <button
           class="popup__button"
@@ -94,21 +104,28 @@
         <form
           class="form"
           name="form"
+          novalidate
         >
           <input
             class="form__item form__item_type_title"
             type="text"
             placeholder="Название"
             name="form__item"
+            minlength="2"
+            maxlength="30"
             required
+            id="title-input"
           >
+          <span class="form__item-error title-input-error"></span>
           <input
             class="form__item form__item_type_link"
-            type="text"
+            type="url"
             placeholder="Ссылка на картинку"
             name="form__item"
             required
+            id="link-input"
           >
+          <span class="form__item-error link-input-error"></span>
           <button
             class="form__button"
             type="submit"
@@ -160,6 +177,7 @@
     </div>
   </template>
   <script src="scripts/index.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 
 </html>
