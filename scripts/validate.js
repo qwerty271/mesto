@@ -1,4 +1,3 @@
-const formInput = form.querySelector(".form__item");
 const configValidation = {
   formSelector: ".form",
   inputSelector: ".form__item",
@@ -77,6 +76,8 @@ function resetError(formElement, config) {
   const inputList = Array.from(
     formElement.querySelectorAll(config.inputSelector)
   );
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+  buttonElement.classList.add(config.inactiveButtonClass);
   inputList.forEach((inputElement) => {
     hideError(formElement, inputElement, config);
   });

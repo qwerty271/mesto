@@ -1,7 +1,6 @@
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupCard = document.querySelector(".popup_type_card");
 const popupImage = document.querySelector(".popup_type_image");
-const popup = document.querySelector(".popup");
 const image = popupImage.querySelector(".popup__image");
 const title = popupImage.querySelector(".popup__title");
 const openEdit = document.querySelector(".profile__edit");
@@ -23,46 +22,15 @@ const linkInput = popupCard.querySelector(".form__item_type_link");
 const elements = document.querySelector(".elements");
 const elementImage = elements.querySelector(".element__image");
 const template = document.querySelector(".template").content;
-const initialCards = [
-  {
-    name: "Архыз",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link:
-      "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 function openPopup(target) {
   target.classList.add("popup_is_opened");
-  resetError(target, configValidation);
+  addClosePopupEscape();
 }
 
 function closePopup(target) {
   target.classList.remove("popup_is_opened");
+  removeClosePopupEscape();
 }
 
 popupEdit.addEventListener("click", (event) => {
@@ -73,7 +41,6 @@ popupEdit.addEventListener("click", (event) => {
 
 popupCard.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
-    formCard.reset(); //??????????????????????????
     closePopup(popupCard);
   }
 });
@@ -88,10 +55,13 @@ openEdit.addEventListener("click", () => {
   openPopup(popupEdit);
   nameInput.value = nameValue.textContent;
   jobInput.value = jobValue.textContent;
+  resetError(popupEdit, configValidation);
 });
 
 openCard.addEventListener("click", () => {
   openPopup(popupCard);
+  resetError(popupCard, configValidation);
+  formCard.reset();
 });
 
 closeEdit.addEventListener("click", () => {
@@ -99,7 +69,6 @@ closeEdit.addEventListener("click", () => {
 });
 
 closeCard.addEventListener("click", () => {
-  formCard.reset(); //???????????????????????
   closePopup(popupCard);
 });
 
@@ -115,9 +84,14 @@ function handleFormEditSubmit(evt) {
 }
 
 function handleFormCardSubmit(evt) {
+  const cardValue = {
+    name: titleInput.value,
+    link: linkInput.value,
+  };
   evt.preventDefault();
   closePopup(popupCard);
-  renderCard(true);
+  renderCard(cardValue);
+  formCard.reset();
 }
 
 formEdit.addEventListener("submit", handleFormEditSubmit);
@@ -127,15 +101,27 @@ function render() {
   initialCards.forEach(renderCard);
 }
 
+// function renderCard(data) {
+//   const htmlElement = template.cloneNode(true);
+//   const elementImage = htmlElement.querySelector(".element__image");
+//   elementImage.src = data.link || linkInput.value;
+//   elementImage.alt = data.name || titleInput.value;
+//   htmlElement.querySelector(".element__place").textContent =
+//     data.name || titleInput.value;
+//   elements.prepend(htmlElement);
+// }
+
 function renderCard(data) {
-  const htmlElement = template.cloneNode(true);
-  const elementImage = htmlElement.querySelector(".element__image");
-  elementImage.src = data.link || linkInput.value;
-  elementImage.alt = data.name || titleInput.value;
-  htmlElement.querySelector(".element__place").textContent =
-    data.name || titleInput.value;
-  elements.prepend(htmlElement);
-  formCard.reset();
+  elements.prepend(createCard(data));
+}
+
+function createCard(data) {
+  const templateElement = template.cloneNode(true);
+  const elementImage = templateElement.querySelector(".element__image");
+  elementImage.src = data.link;
+  elementImage.alt = data.name;
+  templateElement.querySelector(".element__place").textContent = data.name;
+  return templateElement;
 }
 
 elements.addEventListener("click", (event) => {
@@ -147,11 +133,17 @@ elements.addEventListener("click", (event) => {
   }
 });
 
-elements.onclick = function (event) {
+// elements.onclick = function (event) {
+//   const target = event.target;
+//   if (target.id != "like") return;
+//   target.classList.toggle("element__like_active");
+// };
+
+elements.addEventListener("click", (event) => {
   const target = event.target;
   if (target.id != "like") return;
   target.classList.toggle("element__like_active");
-};
+});
 
 elements.addEventListener("click", (event) => {
   const target = event.target;
@@ -170,7 +162,7 @@ closeImage.addEventListener("click", (event) => {
 
 render();
 
-function closePopupEscape() {
+function addClosePopupEscape() {
   const popupList = Array.from(document.querySelectorAll(".popup"));
   popupList.forEach((popupElement) => {
     document.addEventListener("keydown", function (evt) {
@@ -181,4 +173,13 @@ function closePopupEscape() {
   });
 }
 
-closePopupEscape();
+function removeClosePopupEscape() {
+  const popupList = Array.from(document.querySelectorAll(".popup"));
+  popupList.forEach((popupElement) => {
+    document.removeEventListener("keydown", function (evt) {
+      if (evt.key === "Escape") {
+        closePopup(popupElement);
+      }
+    });
+  });
+}
