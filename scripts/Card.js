@@ -1,25 +1,5 @@
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
-    // this._elements = document.querySelector(".elements");
-    // this._title = document
-    //   .querySelector(".popup_type_image")
-    //   .querySelector(".popup__title");
-    // this._image = document
-    //   .querySelector(".popup_type_image")
-    //   .querySelector(".popup__image");
-    // this._popupImage = document.querySelector(".popup_type_image");
-    // this._cardCloseButton = document
-    //   .querySelector(".popup_type_image")
-    //   .querySelector(".popup__button");
-    // this._formCard = document
-    //   .querySelector(".popup_type_card")
-    //   .querySelector(".form");
-    // this._titleInput = document
-    //   .querySelector(".popup_type_card")
-    //   .querySelector(".form__item_type_title").value;
-    // this._linkInput = document
-    //   .querySelector(".popup_type_card")
-    //   .querySelector(".form__item_type_link").value;
     this._link = data.link;
     this._name = data.name;
     this._element = this._getTemplate();

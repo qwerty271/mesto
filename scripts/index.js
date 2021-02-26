@@ -19,11 +19,6 @@ const linkInput = popupCard.querySelector(".form__item_type_link");
 const image = popupImage.querySelector(".popup__image");
 const title = popupImage.querySelector(".popup__title");
 const closeImage = popupImage.querySelector(".popup__button");
-// const form = document.querySelector(".form");
-// const formButtonEdit = popupEdit.querySelector(".form__button");
-// const formButtonCard = popupCard.querySelector(".form__button");
-// const elementImage = elements.querySelector(".element__image");
-// const template = document.querySelector(".template").content;
 const configValidation = {
   formSelector: ".form",
   inputSelector: ".form__item",
@@ -32,6 +27,8 @@ const configValidation = {
   inputErrorClass: "form__item_type_error",
   errorClass: "form__item-error_active",
 };
+const editFormValidator = formValidate(formEdit);
+const cardFormValidator = formValidate(formCard);
 
 function openPopup(target) {
   target.classList.add("popup_is_opened");
@@ -65,12 +62,12 @@ openEdit.addEventListener("click", () => {
   openPopup(popupEdit);
   nameInput.value = nameValue.textContent;
   jobInput.value = jobValue.textContent;
-  formReset(formEdit, popupEdit);
+  editFormValidator.resetError();
 });
 
 openCard.addEventListener("click", () => {
   openPopup(popupCard);
-  formReset(formCard, popupCard);
+  cardFormValidator.resetError();
   formCard.reset();
 });
 
@@ -85,15 +82,6 @@ closeCard.addEventListener("click", () => {
 closeImage.addEventListener("click", () => {
   closePopup(popupImage);
 });
-
-// elements.addEventListener("click", (event) => {
-//   const target = event.target;
-//   if (target.classList != "element__image") return;
-//   openPopup(popupImage);
-//   image.src = target.src;
-//   image.alt = target.alt;
-//   title.textContent = target.alt;
-// });
 
 closeImage.addEventListener("click", (event) => {
   if (event.target === event.currentTarget) {
@@ -145,16 +133,8 @@ initialCards.forEach((item) => {
   elements.prepend(createCard(item));
 });
 
-function formReset(form, popup) {
-  const formValidator = new FormValidator(configValidation, form);
-  const reset = formValidator.resetError(popup);
-  return reset;
-}
-
 function formValidate(form) {
   const formValidator = new FormValidator(configValidation, form);
-  const validate = formValidator.enableValidation();
-  return validate;
+  formValidator.enableValidation();
+  return formValidator;
 }
-formValidate(formEdit);
-formValidate(formCard);
