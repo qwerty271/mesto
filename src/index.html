@@ -8,17 +8,22 @@
     content="width=device-width, initial-scale=1.0"
   />
   <title>Место</title>
-  <link
+  <!-- <link
     rel="stylesheet"
     href="pages/index.css"
-  />
+  /> -->
 </head>
 
 <body class="body">
   <div class="page">
     <header class="header">
+      <!-- <img
+        src="./images/logo.svg"
+        alt="логотип"
+        class="header__logo"
+      > -->
       <img
-        src="images/logo.svg"
+        src="<%=require('./images/logo.svg')%>"
         alt="логотип"
         class="header__logo"
       >
@@ -27,8 +32,13 @@
     <main class="content">
       <section class="profile">
         <div class="profile__content">
+          <!-- <img
+            src="./images/avatar.jpg"
+            alt="аватар"
+            class="profile__avatar"
+          > -->
           <img
-            src="images/avatar.jpg"
+            src="<%=require('./images/avatar.jpg')%>"
             alt="аватар"
             class="profile__avatar"
           >
@@ -66,7 +76,7 @@
           <input
             class="form__item form__item_type_name"
             type="text"
-            name="form__item"
+            name="name"
             placeholder="Имя"
             required
             minlength="2"
@@ -77,7 +87,7 @@
           <input
             class="form__item form__item_type_job"
             type="text"
-            name="form__item"
+            name="info"
             placeholder="О себе"
             required
             minlength="2"
@@ -110,7 +120,7 @@
             class="form__item form__item_type_title"
             type="text"
             placeholder="Название"
-            name="form__item"
+            name="name"
             minlength="2"
             maxlength="30"
             required
@@ -121,7 +131,7 @@
             class="form__item form__item_type_link"
             type="url"
             placeholder="Ссылка на картинку"
-            name="form__item"
+            name="link"
             required
             id="link-input"
           >
@@ -176,19 +186,43 @@
       </div>
     </div>
   </template>
-  <script src="scripts/initial-сards.js"></script>
-  <script
+
+  <!-- <script
     type="module"
-    src="scripts/Card.js"
+    src="./components/initial-сards.js"
   ></script>
   <script
     type="module"
-    src="scripts/FormValidator.js"
+    src="./components/Card.js"
   ></script>
   <script
     type="module"
-    src="scripts/index.js"
+    src="./components/FormValidator.js"
   ></script>
+  <script
+    type="module"
+    src="./components/Section.js"
+  ></script>
+  <script
+    type="module"
+    src="./components/Popup.js"
+  ></script>
+  <script
+    type="module"
+    src="./components/PopupWithImage.js"
+  ></script>
+  <script
+    type="module"
+    src="./components/PopupWithForm.js"
+  ></script>
+  <script
+    type="module"
+    src="./components/UserInfo.js"
+  ></script>
+  <script
+    type="module"
+    src="./pages/index.js"
+  ></script> -->
 
 </body>
 

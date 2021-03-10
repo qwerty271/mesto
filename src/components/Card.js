@@ -25,9 +25,9 @@ export default class Card {
     return this._element;
   } //Генерация карточки
 
-  _handleLikeCard = () => {
+  _handleLikeCard() {
     this._likeButton.classList.toggle("element__like_active");
-  }; //Лайк карточки
+  } //Лайк карточки = () =>
 
   _setEventListeners() {
     this._element.addEventListener("click", (event) => {
