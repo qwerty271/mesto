@@ -50,13 +50,13 @@ export default class FormValidator {
       evt.preventDefault();
     });
     this._setEventListeners();
-  } //= () =>
+  }
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
-  } //= () =>
+  }
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
@@ -64,7 +64,7 @@ export default class FormValidator {
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
     }
-  } //= () =>
+  }
 
   resetError() {
     this._buttonElement.classList.add(this._inactiveButtonClass);

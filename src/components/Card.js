@@ -2,8 +2,8 @@ export default class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._link = data.link;
     this._name = data.name;
-    this._element = this._getTemplate();
     this._cardSelector = cardSelector;
+    this._element = this._getTemplate();
     this._handleCardClick = handleCardClick;
     this._cardImage = this._element.querySelector(".element__image");
     this._likeButton = this._element.querySelector(".element__like");
@@ -11,7 +11,7 @@ export default class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector(".template")
+      .querySelector(this._cardSelector)
       .content.querySelector(".element")
       .cloneNode(true);
     return cardElement;
@@ -19,15 +19,15 @@ export default class Card {
 
   renderCard() {
     this._setEventListeners();
-    this._element.querySelector(".element__image").src = this._link;
-    this._element.querySelector(".element__image").alt = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector(".element__place").textContent = this._name;
     return this._element;
   } //Генерация карточки
 
   _handleLikeCard() {
     this._likeButton.classList.toggle("element__like_active");
-  } //Лайк карточки = () =>
+  } //Лайк карточки
 
   _setEventListeners() {
     this._element.addEventListener("click", (event) => {

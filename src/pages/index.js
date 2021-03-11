@@ -1,12 +1,12 @@
-import Card from "./components/Card.js"; // ../
-import FormValidator from "./components/FormValidator.js";
-import Section from "./components/Section.js";
-import Popup from "./components/Popup.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
-import { initialCards } from "./components/initial-сards.js";
-import "./pages/index.css";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import { initialCards } from "../utils/initial-сards.js";
+import "../pages/index.css";
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupCard = document.querySelector(".popup_type_card");
 const popupImage = document.querySelector(".popup_type_image");
@@ -39,10 +39,8 @@ const cardFormValidator = formValidate(formCard);
 const cardList = new Section(
   {
     items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, ".template", handleCardClick);
-      const cardElement = card.renderCard();
-      cardList.addItem(cardElement);
+    renderer: (data) => {
+      cardList.addItem(createCard(data));
     },
   },
   ".elements"
@@ -52,15 +50,26 @@ const userData = {
   info: jobValue,
 };
 const userInfo = new UserInfo(userData);
-const popupWithFormEdit = new PopupWithForm(popupEdit, handleFormEditSubmit);
-const popupWithFormCard = new PopupWithForm(popupCard, handleFormCardSubmit);
+const popupWithFormEdit = new PopupWithForm(
+  ".popup_type_edit",
+  handleFormEditSubmit
+);
+const popupWithFormCard = new PopupWithForm(
+  ".popup_type_card",
+  handleFormCardSubmit
+);
+const popupWithImage = new PopupWithImage(".popup_type_image");
+
+popupWithImage.setEventListeners();
+popupWithFormCard.setEventListeners();
+popupWithFormEdit.setEventListeners();
+cardList.renderItems();
 
 function handleCardClick(name, link) {
-  const popupWithImage = new PopupWithImage(popupImage, name, link);
   image.src = link;
   image.alt = name;
   title.textContent = name;
-  popupWithImage.open();
+  popupWithImage.open(name, link);
 }
 
 function createCard(data) {
@@ -69,34 +78,20 @@ function createCard(data) {
   return cardElement;
 }
 
-cardList.renderItems();
-
 function formValidate(form) {
   const formValidator = new FormValidator(configValidation, form);
   formValidator.enableValidation();
   return formValidator;
 }
 
-function closePopupImage(popupSelector) {
-  const popup = new PopupWithImage(popupSelector);
-  popup.setEventListeners();
-  return popup;
-}
-
-closePopupImage(popupImage);
-
-popupWithFormCard.setEventListeners();
-popupWithFormEdit.setEventListeners();
-
 function handleFormCardSubmit(data) {
-  elements.prepend(createCard(data));
+  cardList.addItem(createCard(data));
   popupWithFormCard.close();
 }
 
 openCard.addEventListener("click", () => {
   popupWithFormCard.open();
   cardFormValidator.resetError();
-  formCard.reset();
 });
 
 function handleFormEditSubmit(data) {
