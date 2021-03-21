@@ -32,23 +32,21 @@
     <main class="content">
       <section class="profile">
         <div class="profile__content">
-          <!-- <img
-            src="./images/avatar.jpg"
-            alt="аватар"
-            class="profile__avatar"
-          > -->
-          <img
-            src="<%=require('./images/avatar.jpg')%>"
-            alt="аватар"
-            class="profile__avatar"
-          >
+          <div class="profile__container">
+            <img
+              src=""
+              alt="аватар"
+              class="profile__avatar"
+            >
+            <div class="profile__overlay"></div>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button
               class="profile__edit"
               type="button"
             ></button>
-            <p class="profile__about">Исследователь океана</p>
+            <p class="profile__about"></p>
           </div>
         </div>
         <button
@@ -87,7 +85,7 @@
           <input
             class="form__item form__item_type_job"
             type="text"
-            name="info"
+            name="about"
             placeholder="О себе"
             required
             minlength="2"
@@ -163,6 +161,55 @@
       </div>
     </section>
 
+    <section class="popup popup_type_confirm">
+      <div class="popup__content">
+        <h2 class="popup__heading popup__heading_type_confirm">Вы уверены?</h2>
+        <form
+          class="form"
+          name="form"
+          novalidate
+        >
+          <button
+            class="form__button form__button_type_confirm"
+            type="submit"
+          >Да</button>
+        </form>
+        <button
+          class="popup__button"
+          type="button"
+        ></button>
+      </div>
+    </section>
+
+    <section class="popup popup_type_avatar">
+      <div class="popup__content">
+        <h2 class="popup__heading">Обновить аватар</h2>
+        <form
+          class="form"
+          name="form"
+          novalidate
+        >
+          <input
+            class="form__item form__item_type_link"
+            type="url"
+            placeholder="Ссылка на аватар"
+            name="avatar"
+            required
+            id="link-input"
+          >
+          <span class="form__item-error link-input-error"></span>
+          <button
+            class="form__button"
+            type="submit"
+          >Сохранить</button>
+        </form>
+        <button
+          class="popup__button"
+          type="button"
+        ></button>
+      </div>
+    </section>
+
   </div>
   <!--/page-->
   <template class="template">
@@ -178,11 +225,14 @@
       ></button>
       <div class="element__heading">
         <h2 class="element__place"></h2>
-        <button
-          class="element__like"
-          type="button"
-          id="like"
-        ></button>
+        <div class="element__container">
+          <button
+            class="element__like"
+            type="button"
+            id="like"
+          ></button>
+          <p class="element__counter"></p>
+        </div>
       </div>
     </div>
   </template>
