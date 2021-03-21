@@ -19,9 +19,4 @@ export default class PopupConfirm extends Popup {
       this._setSubmitAction(this.data, this.cardId);
     });
   }
-
-  close() {
-    super.close();
-    this._formElement.reset();
-  }
 }

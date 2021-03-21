@@ -55,7 +55,6 @@ const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-21",
   headers: {
     authorization: "4a2580e4-ef70-46aa-907f-36d56804716a",
-    // "Content-Type": "application/json",
   },
 });
 const cardList = new Section(
@@ -81,9 +80,6 @@ popupWithFormAvatar.setEventListeners();
 popupConfirm.setEventListeners();
 
 function handleCardClick(name, link) {
-  image.src = link;
-  image.alt = name;
-  title.textContent = name;
   popupWithImage.open(name, link);
 }
 
@@ -97,7 +93,7 @@ function createCard(data) {
   );
   const cardElement = card.renderCard();
 
-  if (data.owner._id !== "cce7016d793ace25ba39718d") {
+  if (data.owner._id !== myId._id) {
     cardElement.querySelector(".element__delete").remove();
   }
 
@@ -120,7 +116,6 @@ function handleFormCardSubmit(data) {
   api
     .addCard(data.name, data.link)
     .then((res) => {
-      // cardList.addItem(createCard(data));
       const array = [];
       array.push(res);
       cardList.renderItems(array);
@@ -164,8 +159,8 @@ function handleFormAvatarSubmit(data) {
   popupAvatar.querySelector(".form__button").textContent = "Сохранение...";
   api
     .replaceAvatar(data.avatar)
-    .then(() => {
-      document.querySelector(".profile__avatar").src = data.avatar;
+    .then((userData) => {
+      userInfo.setUserInfo(userData);
       popupWithFormAvatar.close();
       popupAvatar.querySelector(".form__button").textContent = "Сохранить";
     })
@@ -197,19 +192,12 @@ function setSubmitAction(data, cardId) {
 }
 
 api
-  .getInitialCards()
-  .then((data) => {
-    cardList.renderItems(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api
-  .getUser()
-  .then((user) => {
-    myId = user;
-    userInfo.setUserInfo(user);
+  .getAllData()
+  .then((argument) => {
+    const [Cards, userData] = argument;
+    cardList.renderItems(Cards);
+    myId = userData;
+    userInfo.setUserInfo(userData);
   })
   .catch((err) => {
     console.log(err);
@@ -223,7 +211,6 @@ function handleLikeCard(element, id, likes) {
       .removeLike(id)
       .then((data) => {
         likesArray.splice(likesArray.indexOf(myId), 1);
-        // likesArray.pop();
         numberOfLikes.textContent = data.likes.length;
       })
       .catch((err) => {
@@ -249,7 +236,7 @@ function handleLikeCard(element, id, likes) {
 }
 //////////////Проверка на наличие ID//////////////
 function returnId(obj) {
-  return obj._id === "cce7016d793ace25ba39718d";
+  return obj._id === myId._id;
 }
 
 function filterById(item) {
@@ -258,6 +245,7 @@ function filterById(item) {
   }
   return false;
 }
+
 //////////////Проверка на наличие ID//////////////
 
 ////test/////
