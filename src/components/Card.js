@@ -5,6 +5,9 @@ export default class Card {
     handleCardClick,
     confirmDelete,
     handleLikeCard
+    //TEST
+    // user
+    //TEST
   ) {
     this._link = data.link;
     this._name = data.name;
@@ -17,6 +20,9 @@ export default class Card {
     this._likeButton = this._element.querySelector(".element__like");
     this._confirmDelete = confirmDelete;
     this._handleLikeCard = handleLikeCard;
+    //TEST
+    // this._userData = user;
+    //TEST
   }
 
   _getTemplate() {
@@ -35,6 +41,19 @@ export default class Card {
     this._element.querySelector(
       ".element__counter"
     ).textContent = this._likes.length;
+
+    //TEST
+    // this._likesArray = Array.from(this._likes).map((item) => {
+    //   return item._id;
+    // });
+
+    // if (this._likesArray.includes(this._userData._id)) {
+    //   this._likeButton.classList.add("element__like_active");
+    // } else {
+    //   this._likeButton.classList.remove("element__like_active");
+    // }
+    //TEST
+
     return this._element;
   } //Генерация карточки
 

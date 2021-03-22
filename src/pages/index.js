@@ -73,6 +73,18 @@ const userData = {
 const userInfo = new UserInfo(userData);
 let myId = {};
 
+api
+  .getAllData()
+  .then((argument) => {
+    const [Cards, userData] = argument;
+    myId = userData;
+    userInfo.setUserInfo(userData);
+    cardList.renderItems(Cards);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 popupWithImage.setEventListeners();
 popupWithFormCard.setEventListeners();
 popupWithFormEdit.setEventListeners();
@@ -90,14 +102,20 @@ function createCard(data) {
     handleCardClick,
     confirmDelete,
     handleLikeCard
+    // TEST
+    // userInfo.getUserData()
+    // TEST
   );
   const cardElement = card.renderCard();
 
   if (data.owner._id !== myId._id) {
     cardElement.querySelector(".element__delete").remove();
   }
-
   if (typeof data.likes.find(filterById) === "object") {
+    //TEST
+    // if (likesArray.includes(myId._id)) {
+    //TEST
+    // console.log("THIS");
     cardElement
       .querySelector(".element__like")
       .classList.add("element__like_active");
@@ -191,18 +209,6 @@ function setSubmitAction(data, cardId) {
   popupConfirm.close();
 }
 
-api
-  .getAllData()
-  .then((argument) => {
-    const [Cards, userData] = argument;
-    cardList.renderItems(Cards);
-    myId = userData;
-    userInfo.setUserInfo(userData);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 function handleLikeCard(element, id, likes) {
   const numberOfLikes = element.querySelector(".element__counter");
   let likesArray = likes;
@@ -237,6 +243,7 @@ function handleLikeCard(element, id, likes) {
 //////////////Проверка на наличие ID//////////////
 function returnId(obj) {
   return obj._id === myId._id;
+  // return obj._id === "cce7016d793ace25ba39718d";
 }
 
 function filterById(item) {

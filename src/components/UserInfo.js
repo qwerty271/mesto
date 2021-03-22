@@ -19,5 +19,16 @@ export default class UserInfo {
     if (data.avatar) {
       this._avatar.src = data.avatar;
     }
+
+    //TEST
+    // this._userData = data;
+    //TEST
   }
+
+  //TEST
+  // getUserData() {
+  //   console.log(this._userData);
+  //   return this._userData;
+  // }
+  //TEST
 }
